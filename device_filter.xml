@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Arduino USB ডিভাইস ফিল্টার -->
+    
+    <!-- Arduino Uno, Mega, Nano (Official) -->
+    <usb-device vendor-id="9025" /> <!-- 0x2341 = 9025 -->
+    
+    <!-- Arduino Clone (CH340 chip) -->
+    <usb-device vendor-id="6790" /> <!-- 0x1A86 = 6790 -->
+    
+    <!-- FTDI chip (কিছু Arduino ক্লোনে) -->
+    <usb-device vendor-id="1027" /> <!-- 0x0403 = 1027 -->
+    
+    <!-- ESP32 -->
+    <usb-device vendor-id="4292" /> <!-- 0x10C4 = 4292 -->
+</resources>
