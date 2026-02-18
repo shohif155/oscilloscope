@@ -13,12 +13,12 @@ jobs:
         distribution: 'temurin'
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
-    - name: Install Gradle
+    - name: Download Gradle wrapper
       run: |
-        curl -s "https://get.sdkman.io" | bash
-        source "$HOME/.sdkman/bin/sdkman-init.sh"
-        sdk install gradle 8.0
-        gradle wrapper --gradle-version 8.0
+        wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip -O gradle.zip
+        unzip -q gradle.zip
+        ./gradle-8.0/bin/gradle wrapper --gradle-version=8.0 --distribution-type=bin
+        chmod +x gradlew
     - name: Build APK
       run: ./gradlew assembleDebug
     - uses: actions/upload-artifact@v4
