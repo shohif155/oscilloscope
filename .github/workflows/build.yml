@@ -11,10 +11,17 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Make gradlew
-      run: echo -e '#!/bin/sh\nexec gradle "$@"' > gradlew && chmod +x gradlew
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+    - name: Create gradlew
+      run: |
+        chmod +x gradlew 2>/dev/null || true
+        wget -q https://services.gradle.org/distributions/gradle-8.0-bin.zip
+        unzip -q gradle-8.0-bin.zip
+        export PATH=$PATH:$PWD/gradle-8.0/bin
+        gradle wrapper
     - name: Build APK
-      run: cd .. && ./gradlew assembleDebug
+      run: ./gradlew assembleDebug
     - uses: actions/upload-artifact@v4
       with:
         name: Oscilloscope-APK
